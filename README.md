@@ -1,6 +1,8 @@
+> In short, if you have ChatGPT pro version, this code creates an API which takes "message" input (message of image creation) then in backend it will fire up a browser -> run ChatGPT in your browser -> types the message you gave through API -> Once the image is generated, it returns the response of API as the url of the image. Essentially, if you have one browser/server running with ChatGPT pro then you can create your own API for image generation (including Ghibli!).
+
 # 🤖 chatgpt-image-automation
 
-Automate ChatGPT to generate images through browser interaction — programmatically send prompts and extract image URLs, all using Python + FastAPI + Chrome automation.
+Create your own ChatGPT image generating API. Automate ChatGPT to generate images through browser interaction — programmatically send prompts and extract image URLs, all using Python + FastAPI + Chrome automation.
 
 ---
 
