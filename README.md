@@ -1,6 +1,6 @@
 # 🤖 chatgpt-image-automation
 
-Automate ChatGPT to generate images through browser interaction — programmatically send prompts and extract image URLs, all using Python + FastAPI + Chrome automation.
+Create your own ChatGPT image generating API. Automate ChatGPT to generate images through browser interaction — programmatically send prompts and extract image URLs, all using Python + FastAPI + Chrome automation.
 
 ---
 
