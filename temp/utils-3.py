@@ -1,42 +1,18 @@
-# utils.py
+"""utils.py — Half-Selenium Integration (Improved)"""
 
-from fastapi import HTTPException, status
-from jose import JWTError, jwt
-from dotenv import load_dotenv
-import asyncio, os
-
-load_dotenv()
+# from bs4 import BeautifulSoup
+import nodriver as uc
+import asyncio
 
 # --- Config ---
-# Chrome Binary Location (Note: Mac users will have different location)
 browser_1 = "C:/Program Files/Google/Chrome/Application/chrome.exe"
-
-# User Profile of Chrome (Note: Mac users will have different location)
 profile_dir = "C:/Users/TAMANG/AppData/Local/Google/Chrome/User Data"
-
-# Your Profile Number may be different -> It can be 1 or 2 or anything. See physically in Explorer/Finder
 profile_name = "Profile 27"
-
 url = "https://chat.openai.com/"
-# message = "Generate a simple image quickly with text 'SIMPLE'."
+message = "Generate a simple image quickly with text 'SIMPLE'."
 
-# --- JWT verification ---
-def verify_jwt_token(token: str = ""):
-    SECRET_KEY = os.getenv("SECRET_KEY")
-    ALGORITHM = os.getenv("ALGORITHM")
 
-    try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        return payload  # Can return user info or claims if needed
-    except JWTError:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid or expired token",
-        )
-
-async def run_chatgpt(message: str):
-    import nodriver as uc
-    
+async def run_chatgpt():
     browser = await uc.start(
         headless=False,
         browser_executable_path=browser_1,
@@ -77,7 +53,7 @@ async def run_chatgpt(message: str):
 
             print(f"🔍 Found {len(images)} images | Stability Count: {count + 1}")
 
-            if count >= 6:
+            if count >= 3:
                 latest_image = images[-1]
                 attrs = latest_image.attrs
                 src = attrs["src"]
@@ -91,3 +67,8 @@ async def run_chatgpt(message: str):
     finally:
         print("🧹 Cleaning up browser...")
         browser.stop()
+
+if __name__ == "__main__":
+    # Do nothing here for production usage with FastAPI
+    import nodriver as uc
+    uc.loop().run_until_complete(run_chatgpt())

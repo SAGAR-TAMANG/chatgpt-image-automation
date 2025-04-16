@@ -1,0 +1,6 @@
+nodriver
+fastapi
+uvicorn
+python-jose
+python-dotenv
+pydantic
